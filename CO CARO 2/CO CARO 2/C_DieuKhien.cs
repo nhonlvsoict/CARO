@@ -145,19 +145,25 @@ namespace CO_CARO_2
         //Delete move
         public void deleteMove(Graphics g, int moveX, int moveY, int botX, int botY)
         {
-            //Console.WriteLine(moveX +" "+ moveY);
-            int dong = moveY / C_OCo.CHIEU_CAO;
-            int cot = moveX / C_OCo.CHIEU_RONG;
-            MangOCo[dong, cot].SoHuu = 0;
-            int dongBot = botY / C_OCo.CHIEU_CAO;
-            int cotBot = botX / C_OCo.CHIEU_RONG;
-            MangOCo[dongBot, cotBot].SoHuu = 0;
+                //Console.WriteLine(moveX +" "+ moveY);
+                int dong = moveY / C_OCo.CHIEU_CAO;
+                int cot = moveX / C_OCo.CHIEU_RONG;
+                MangOCo[dong, cot].SoHuu = 0;
+                int dongBot = botY / C_OCo.CHIEU_CAO;
+                int cotBot = botX / C_OCo.CHIEU_RONG;
+                MangOCo[dongBot, cotBot].SoHuu = 0;
             //Console.WriteLine(botX + " " + botY);
             //Console.WriteLine(MangOCo[dongBot, cotBot].SoHuu);
-            _stkCacNuocDaDi.Pop();
-            BanCo.veQuanCo(g, cot * C_OCo.CHIEU_CAO + 1, dong * C_OCo.CHIEU_RONG + 1, 0);
-            _stkCacNuocDaDi.Pop();
-            BanCo.veQuanCo(g, cotBot * C_OCo.CHIEU_CAO + 1, dongBot * C_OCo.CHIEU_RONG + 1, 0);
+            if (_stkCacNuocDaDi.Count != 0)
+            {
+                _stkCacNuocDaDi.Pop();
+                BanCo.veQuanCo(g, cot * C_OCo.CHIEU_CAO + 1, dong * C_OCo.CHIEU_RONG + 1, 0);
+            }
+            if (_stkCacNuocDaDi.Count != 0)
+            {
+                _stkCacNuocDaDi.Pop();
+                BanCo.veQuanCo(g, cotBot * C_OCo.CHIEU_CAO + 1, dongBot * C_OCo.CHIEU_RONG + 1, 0);
+            }
         }
 
         //Undo move
