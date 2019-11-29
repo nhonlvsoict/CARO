@@ -58,3 +58,17 @@ N:\Documents\AI\AI-Caro.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.exe.ma
 N:\Documents\AI\AI-Caro.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.application
 N:\Documents\AI\AI-Caro.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.exe.manifest
 N:\Documents\AI\AI-Caro.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.application
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.exe.config
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.exe.manifest
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.application
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.exe
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\bin\Debug\CO CARO 2.pdb
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.csprojAssemblyReference.cache
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO_CARO_2.fmLuatChoi.resources
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO_CARO_2.fmCoCaro.resources
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO_CARO_2.Properties.Resources.resources
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.csproj.GenerateResource.cache
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.exe.manifest
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.application
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.exe
+N:\Documents\AI\CARO.git\trunk\CO CARO 2\CO CARO 2\obj\Debug\CO CARO 2.pdb
