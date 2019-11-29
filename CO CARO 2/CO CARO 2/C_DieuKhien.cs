@@ -154,13 +154,10 @@ namespace CO_CARO_2
                 MangOCo[dongBot, cotBot].SoHuu = 0;
             //Console.WriteLine(botX + " " + botY);
             //Console.WriteLine(MangOCo[dongBot, cotBot].SoHuu);
-            if (_stkCacNuocDaDi.Count != 0)
+            if (_stkCacNuocDaDi.Count != 0 && _sanSang)
             {
                 _stkCacNuocDaDi.Pop();
                 BanCo.veQuanCo(g, cot * C_OCo.CHIEU_CAO + 1, dong * C_OCo.CHIEU_RONG + 1, 0);
-            }
-            if (_stkCacNuocDaDi.Count != 0)
-            {
                 _stkCacNuocDaDi.Pop();
                 BanCo.veQuanCo(g, cotBot * C_OCo.CHIEU_CAO + 1, dongBot * C_OCo.CHIEU_RONG + 1, 0);
             }
@@ -179,7 +176,12 @@ namespace CO_CARO_2
                 //}
                 if (_luotDi == 2 || _luotDi == 1)
                 {
-                    deleteMove(g, moveX, moveY, botX, botY);
+                    if (!_sanSang)
+                    {
+                        MessageBox.Show("The battle has finished, cannot undo!");
+                    }
+                    else
+                        deleteMove(g, moveX, moveY, botX, botY);
                 }
             }
             catch (IndexOutOfRangeException e)
