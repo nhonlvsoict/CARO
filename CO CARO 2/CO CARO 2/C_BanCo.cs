@@ -11,7 +11,7 @@ namespace CO_CARO_2
         //khai báo 2 ảnh để vẽ ảnh lên bàn cờ
         Image ImageO = new Bitmap(Properties.Resources.o);
         Image ImageX = new Bitmap(Properties.Resources.x);
-        Image empty = Image.FromFile("C:/Users/ADMIN/Desktop/Caro AI/CO CARO 2/CO CARO 2/HinhAnh/empty.png");
+        Image empty = new Bitmap(Properties.Resources.empty);
 
         private int _soDong;
 
