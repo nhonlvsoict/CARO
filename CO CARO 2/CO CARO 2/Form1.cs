@@ -32,10 +32,11 @@ namespace CO_CARO_2
             DieuKhien = new C_DieuKhien();
 
             LuatChoi = new fmLuatChoi();
-
+            chuoi1.Visible = false;
+            logo.Visible = false;
             //avp_btn.Checked = true;
 
-            //DieuKhien.LuotDi = 1;
+            DieuKhien.LuotDi = 1;
             //chơiVớiMáyToolStripMenuItem_Click();
         }
 
@@ -52,6 +53,9 @@ namespace CO_CARO_2
 
         private void chơiVớiNgườiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            welcomeChuoi.Visible = false;
+            chuoi1.Visible = true;
+            logo.Visible = true;
             DieuKhien.choiVoiNguoi(grp);
 
             grp.Clear(pnlBanCo.BackColor);
@@ -90,6 +94,9 @@ namespace CO_CARO_2
 
         private void chơiVớiMáyToolStripMenuItem_Click(object sender = null, EventArgs e = null)
         {
+            welcomeChuoi.Visible = false;
+            chuoi1.Visible = true;
+            logo.Visible = true;
             DieuKhien.choiVoiMay(grp);
 
             grp.Clear(pnlBanCo.BackColor);
@@ -194,6 +201,11 @@ namespace CO_CARO_2
         }
 
         private void fmCoCaro_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
 
         }

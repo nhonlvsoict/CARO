@@ -83,6 +83,26 @@ namespace CO_CARO_2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gif2 {
+            get {
+                object obj = ResourceManager.GetObject("gif2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gif3 {
+            get {
+                object obj = ResourceManager.GetObject("gif3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon1 {
             get {
                 object obj = ResourceManager.GetObject("icon1", resourceCulture);
