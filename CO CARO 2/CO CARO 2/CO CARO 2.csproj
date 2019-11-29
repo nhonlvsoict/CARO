@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -131,6 +131,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bananas.ico" />
+    <None Include="Resources\gif1edit.gif" />
+    <None Include="Resources\gif31.gif" />
+    <None Include="Resources\gif2edit.gif" />
+    <None Include="Resources\gif21.gif" />
+    <None Include="Resources\cloud4.png" />
+    <None Include="Resources\cloud3.png" />
+    <None Include="Resources\cloud2.png" />
+    <None Include="Resources\clous11.png" />
+    <None Include="Resources\clous1.png" />
+    <None Include="Resources\cloud.png" />
+    <None Include="Resources\gif3.gif" />
+    <None Include="Resources\gif2.gif" />
     <None Include="Resources\gif1.gif" />
     <None Include="Resources\icon1.png" />
     <None Include="Resources\rules-1752536_960_720.png" />

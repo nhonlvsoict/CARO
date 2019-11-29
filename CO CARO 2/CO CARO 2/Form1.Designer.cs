@@ -46,15 +46,23 @@
             this.ruleaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developingTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureChuoi1 = new System.Windows.Forms.PictureBox();
+            this.panelGayban = new System.Windows.Forms.Panel();
+            this.textGayBan = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logo = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBanCo = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.welcomeChuoi = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureChuoi1)).BeginInit();
+            this.panelGayban.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pnlBanCo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.welcomeChuoi)).BeginInit();
             this.SuspendLayout();
             // 
             // fileToolStripMenuItem
@@ -145,14 +153,14 @@
             // aIVsPersonToolStripMenuItem
             // 
             this.aIVsPersonToolStripMenuItem.Name = "aIVsPersonToolStripMenuItem";
-            this.aIVsPersonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aIVsPersonToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.aIVsPersonToolStripMenuItem.Text = "AI vs Person";
             this.aIVsPersonToolStripMenuItem.Click += new System.EventHandler(this.chơiVớiMáyToolStripMenuItem_Click);
             // 
             // personVsPersonToolStripMenuItem
             // 
             this.personVsPersonToolStripMenuItem.Name = "personVsPersonToolStripMenuItem";
-            this.personVsPersonToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.personVsPersonToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.personVsPersonToolStripMenuItem.Text = "Person vs Person";
             this.personVsPersonToolStripMenuItem.Click += new System.EventHandler(this.chơiVớiNgườiToolStripMenuItem_Click);
             // 
@@ -161,6 +169,7 @@
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.undoToolStripMenuItem.Text = "Undo";
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -174,37 +183,78 @@
             // ruleaToolStripMenuItem
             // 
             this.ruleaToolStripMenuItem.Name = "ruleaToolStripMenuItem";
-            this.ruleaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ruleaToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.ruleaToolStripMenuItem.Text = "Rules";
             this.ruleaToolStripMenuItem.Click += new System.EventHandler(this.luậtChơiToolStripMenuItem_Click);
             // 
             // developingTeamToolStripMenuItem
             // 
             this.developingTeamToolStripMenuItem.Name = "developingTeamToolStripMenuItem";
-            this.developingTeamToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.developingTeamToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.developingTeamToolStripMenuItem.Text = "About Us";
             this.developingTeamToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.pictureChuoi1);
+            this.panel1.Controls.Add(this.panelGayban);
+            this.panel1.Controls.Add(this.logo);
             this.panel1.Location = new System.Drawing.Point(1132, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(216, 760);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // pictureChuoi1
+            // 
+            this.pictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif31;
+            this.pictureChuoi1.Location = new System.Drawing.Point(0, 462);
+            this.pictureChuoi1.Name = "pictureChuoi1";
+            this.pictureChuoi1.Size = new System.Drawing.Size(202, 295);
+            this.pictureChuoi1.TabIndex = 9;
+            this.pictureChuoi1.TabStop = false;
+            this.pictureChuoi1.Click += new System.EventHandler(this.chuoi1_Click);
+            // 
+            // panelGayban
+            // 
+            this.panelGayban.Controls.Add(this.textGayBan);
+            this.panelGayban.Controls.Add(this.pictureBox1);
+            this.panelGayban.Location = new System.Drawing.Point(3, 237);
+            this.panelGayban.Name = "panelGayban";
+            this.panelGayban.Size = new System.Drawing.Size(204, 241);
+            this.panelGayban.TabIndex = 10;
+            this.panelGayban.Visible = false;
+            // 
+            // textGayBan
+            // 
+            this.textGayBan.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGayBan.Location = new System.Drawing.Point(35, 74);
+            this.textGayBan.Name = "textGayBan";
+            this.textGayBan.Size = new System.Drawing.Size(125, 66);
+            this.textGayBan.TabIndex = 2;
+            this.textGayBan.Text = "The battle has begun!!!";
+            this.textGayBan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::CO_CARO_2.Properties.Resources.icon1;
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, -25);
+            this.pictureBox1.Image = global::CO_CARO_2.Properties.Resources.clous11;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 49);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(219, 203);
-            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.Size = new System.Drawing.Size(201, 194);
+            this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // logo
+            // 
+            this.logo.Image = global::CO_CARO_2.Properties.Resources.icon1;
+            this.logo.InitialImage = ((System.Drawing.Image)(resources.GetObject("logo.InitialImage")));
+            this.logo.Location = new System.Drawing.Point(0, -25);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(219, 203);
+            this.logo.TabIndex = 6;
+            this.logo.TabStop = false;
+            this.logo.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -226,6 +276,7 @@
             this.pnlBanCo.BackColor = System.Drawing.Color.FloralWhite;
             this.pnlBanCo.BackgroundImage = global::CO_CARO_2.Properties.Resources.b;
             this.pnlBanCo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pnlBanCo.Controls.Add(this.welcomeChuoi);
             this.pnlBanCo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBanCo.Location = new System.Drawing.Point(4, 30);
             this.pnlBanCo.Margin = new System.Windows.Forms.Padding(4);
@@ -235,14 +286,15 @@
             this.pnlBanCo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBanCo_Paint);
             this.pnlBanCo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pnlBanCo_MouseClick);
             // 
-            // pictureBox2
+            // welcomeChuoi
             // 
-            this.pictureBox2.Image = global::CO_CARO_2.Properties.Resources.gif1;
-            this.pictureBox2.Location = new System.Drawing.Point(-87, 471);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(321, 285);
-            this.pictureBox2.TabIndex = 9;
-            this.pictureBox2.TabStop = false;
+            this.welcomeChuoi.Image = global::CO_CARO_2.Properties.Resources.gif3;
+            this.welcomeChuoi.Location = new System.Drawing.Point(168, 142);
+            this.welcomeChuoi.Name = "welcomeChuoi";
+            this.welcomeChuoi.Size = new System.Drawing.Size(802, 454);
+            this.welcomeChuoi.TabIndex = 0;
+            this.welcomeChuoi.TabStop = false;
+            this.welcomeChuoi.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // fmCoCaro
             // 
@@ -257,14 +309,18 @@
             this.MaximizeBox = false;
             this.Name = "fmCoCaro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ultimate Caro Battle";
+            this.Text = "Bananas Caro Battle";
             this.Load += new System.EventHandler(this.fmCoCaro_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureChuoi1)).EndInit();
+            this.panelGayban.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pnlBanCo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.welcomeChuoi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,10 +344,14 @@
         private System.Windows.Forms.ToolStripMenuItem ruleaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem developingTeamToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel pnlBanCo;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox welcomeChuoi;
+        private System.Windows.Forms.PictureBox pictureChuoi1;
+        private System.Windows.Forms.Panel panelGayban;
+        private System.Windows.Forms.Label textGayBan;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
