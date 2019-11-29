@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CO CARO 2.exe" size="524768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CO CARO 2.exe" size="1453536">
       <assemblyIdentity name="CO CARO 2" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BNMaeJY9Dk5YE3CXovEYLf6tPqvzY8n8w0w4xj+s8Js=</dsig:DigestValue>
+        <dsig:DigestValue>+w/IYxfnbhgxdI5hMtbX3AC7U4NQOBCQ1rwDuoIQSSc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

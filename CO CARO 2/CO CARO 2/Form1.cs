@@ -33,7 +33,10 @@ namespace CO_CARO_2
 
             LuatChoi = new fmLuatChoi();
 
-            avp_btn.Checked = true;
+            //avp_btn.Checked = true;
+
+            //DieuKhien.LuotDi = 1;
+            //chơiVớiMáyToolStripMenuItem_Click();
         }
 
         private void pnlBanCo_Paint(object sender, PaintEventArgs e)
@@ -85,7 +88,7 @@ namespace CO_CARO_2
             }
         }
 
-        private void chơiVớiMáyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void chơiVớiMáyToolStripMenuItem_Click(object sender = null, EventArgs e = null)
         {
             DieuKhien.choiVoiMay(grp);
 
@@ -170,14 +173,29 @@ namespace CO_CARO_2
 
        
 
-        private void newgame_Click(object sender, EventArgs e)
+        //private void newgame_Click(object sender, EventArgs e)
+        //{
+        //    if (avp_btn.Checked)
+        //    {
+        //        DieuKhien.LuotDi = 1;
+        //        chơiVớiMáyToolStripMenuItem_Click(sender, e);
+        //    }else if (pvp_btn.Checked)
+        //        chơiVớiNgườiToolStripMenuItem_Click(sender, e);
+        //}
+
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
-            if (avp_btn.Checked)
-            {
-                DieuKhien.LuotDi = 1;
-                chơiVớiMáyToolStripMenuItem_Click(sender, e);
-            }else if (pvp_btn.Checked)
-                chơiVớiNgườiToolStripMenuItem_Click(sender, e);
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fmCoCaro_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

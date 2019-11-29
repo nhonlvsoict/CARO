@@ -131,6 +131,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bananas.ico" />
+    <None Include="Resources\gif1.gif" />
+    <None Include="Resources\icon1.png" />
     <None Include="Resources\rules-1752536_960_720.png" />
   </ItemGroup>
   <ItemGroup>

@@ -7,14 +7,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="CO CARO 2.exe.manifest" size="3853">
+    <dependentAssembly dependencyType="install" codebase="CO CARO 2.exe.manifest" size="3854">
       <assemblyIdentity name="CO CARO 2.exe" version="1.0.0.8" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>C68ORndVY9+CWaavDyekkaaV2LoCG+XbLINdNjX0m6s=</dsig:DigestValue>
+        <dsig:DigestValue>Ucu2nEqVFXWO3LaSjtJESOTUFrcs4b6aEuEeUjEMuYc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
