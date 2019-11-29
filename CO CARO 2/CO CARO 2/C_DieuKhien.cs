@@ -25,6 +25,27 @@ namespace CO_CARO_2
         private int MaxDepth = 2;
         private const int INFINITY = 10000000;
         private C_OCo oco = new C_OCo();
+        private Panel _panelGayBan;
+        private Label _textGayBan;
+        private PictureBox _pictureChuoi1;
+
+        public PictureBox PictureChuoi1
+        {
+            get { return _pictureChuoi1; }
+            set { _pictureChuoi1 = value; }
+        }
+
+        public Panel PanelGayBan
+        {
+            get { return _panelGayBan; }
+            set { _panelGayBan = value; }
+        }
+
+        public Label TextGayBan
+        {
+            get { return _textGayBan; }
+            set { _textGayBan = value; }
+        }
 
         public int LuotDi
         {
@@ -163,7 +184,7 @@ namespace CO_CARO_2
             _cheDoChoi = 2;
             //random lượt đi
             //_luotDi = rd.Next(0, 2);
-            //_luotDi = 2;
+            _luotDi = 1;
             //if (_luotDi == 1)
             //{
             //    MessageBox.Show("AI goes first");
@@ -1914,12 +1935,55 @@ namespace CO_CARO_2
             else//chơi với máy
             {
                 if (oco.SoHuu == 1)
+                {
                     MessageBox.Show("AI wins");
+                    gayBan(1);
+                }
                 else
+                {
                     MessageBox.Show("Player wins");
+                    gayBan(2);
+                }
+
             }
 
             _sanSang = false;
         }
+
+        private void gayBan(int soHuu)
+        {
+            if(soHuu == 1)
+            {
+                String[] arrGay = { "Ohh I didnt mean to hurt you", "Roses are red violets are blue and i....beat you 🙂", "I'm inevitable 8)" };
+                String gay = arrGay[rd.Next(0, 3)];
+                PictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif31;
+                TextGayBan.Text = gay;
+
+                PanelGayBan.Visible = true;
+                Delayed(4000, () => PanelGayBan.Visible = false);
+            }
+            else
+            {
+                String[] arrGay = { "Lucky shot😀", "Hmmmm...someone was talking while I was playing😌", "Good game, next time i will use 100% my power" };
+                String gay = arrGay[rd.Next(0, 3)];
+                PictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif31;
+                TextGayBan.Text = gay;
+
+                PanelGayBan.Visible = true;
+                Delayed(4000, () => PanelGayBan.Visible = false);
+            }
+            
+        }
+        public void Delayed(int delay, Action action)
+        {
+            Timer timer = new Timer();
+            timer.Interval = delay;
+            timer.Tick += (s, e) => {
+                action();
+                timer.Stop();
+            };
+            timer.Start();
+        }
+
     }
 }

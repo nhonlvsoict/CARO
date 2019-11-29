@@ -46,17 +46,22 @@
             this.ruleaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developingTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelGayban = new System.Windows.Forms.Panel();
+            this.textGayBan = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBanCo = new System.Windows.Forms.Panel();
             this.welcomeChuoi = new System.Windows.Forms.PictureBox();
-            this.chuoi1 = new System.Windows.Forms.PictureBox();
+            this.pictureChuoi1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.logo = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panelGayban.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.pnlBanCo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.welcomeChuoi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chuoi1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureChuoi1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,12 +196,34 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.panel1.Controls.Add(this.chuoi1);
+            this.panel1.Controls.Add(this.pictureChuoi1);
+            this.panel1.Controls.Add(this.panelGayban);
             this.panel1.Controls.Add(this.logo);
             this.panel1.Location = new System.Drawing.Point(1132, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(216, 760);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panelGayban
+            // 
+            this.panelGayban.Controls.Add(this.textGayBan);
+            this.panelGayban.Controls.Add(this.pictureBox1);
+            this.panelGayban.Location = new System.Drawing.Point(3, 237);
+            this.panelGayban.Name = "panelGayban";
+            this.panelGayban.Size = new System.Drawing.Size(204, 241);
+            this.panelGayban.TabIndex = 10;
+            this.panelGayban.Visible = false;
+            // 
+            // textGayBan
+            // 
+            this.textGayBan.Font = new System.Drawing.Font("MS Reference Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textGayBan.Location = new System.Drawing.Point(35, 74);
+            this.textGayBan.Name = "textGayBan";
+            this.textGayBan.Size = new System.Drawing.Size(125, 66);
+            this.textGayBan.TabIndex = 2;
+            this.textGayBan.Text = "The battle has begun!!!";
+            this.textGayBan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -238,14 +265,24 @@
             this.welcomeChuoi.TabStop = false;
             this.welcomeChuoi.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
-            // chuoi1
+            // pictureChuoi1
             // 
-            this.chuoi1.Image = global::CO_CARO_2.Properties.Resources.gif1;
-            this.chuoi1.Location = new System.Drawing.Point(-87, 471);
-            this.chuoi1.Name = "chuoi1";
-            this.chuoi1.Size = new System.Drawing.Size(321, 285);
-            this.chuoi1.TabIndex = 9;
-            this.chuoi1.TabStop = false;
+            this.pictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif31;
+            this.pictureChuoi1.Location = new System.Drawing.Point(0, 462);
+            this.pictureChuoi1.Name = "pictureChuoi1";
+            this.pictureChuoi1.Size = new System.Drawing.Size(202, 295);
+            this.pictureChuoi1.TabIndex = 9;
+            this.pictureChuoi1.TabStop = false;
+            this.pictureChuoi1.Click += new System.EventHandler(this.chuoi1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::CO_CARO_2.Properties.Resources.clous11;
+            this.pictureBox1.Location = new System.Drawing.Point(2, 49);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(201, 194);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // logo
             // 
@@ -271,15 +308,17 @@
             this.MaximizeBox = false;
             this.Name = "fmCoCaro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ultimate Caro Battle";
+            this.Text = "Bananas Caro Battle";
             this.Load += new System.EventHandler(this.fmCoCaro_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panelGayban.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.pnlBanCo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.welcomeChuoi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chuoi1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureChuoi1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -307,8 +346,11 @@
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel pnlBanCo;
-        private System.Windows.Forms.PictureBox chuoi1;
         private System.Windows.Forms.PictureBox welcomeChuoi;
+        private System.Windows.Forms.PictureBox pictureChuoi1;
+        private System.Windows.Forms.Panel panelGayban;
+        private System.Windows.Forms.Label textGayBan;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

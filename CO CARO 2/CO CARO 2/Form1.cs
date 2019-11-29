@@ -32,12 +32,15 @@ namespace CO_CARO_2
             DieuKhien = new C_DieuKhien();
 
             LuatChoi = new fmLuatChoi();
-            chuoi1.Visible = false;
+            pictureChuoi1.Visible = false;
             logo.Visible = false;
             //avp_btn.Checked = true;
 
             DieuKhien.LuotDi = 1;
             //chơiVớiMáyToolStripMenuItem_Click();
+            DieuKhien.PanelGayBan = panelGayban;
+            DieuKhien.TextGayBan = textGayBan;
+            DieuKhien.PictureChuoi1 = pictureChuoi1;
         }
 
         private void pnlBanCo_Paint(object sender, PaintEventArgs e)
@@ -53,15 +56,33 @@ namespace CO_CARO_2
 
         private void chơiVớiNgườiToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            pictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif1edit;
+            textGayBan.Text = "The battle has begun!!!";
+            panelGayban.Visible = true;
+            Delayed(3000, () => panelGayban.Visible = false);
+
             welcomeChuoi.Visible = false;
-            chuoi1.Visible = true;
+            pictureChuoi1.Visible = true;
             logo.Visible = true;
+
             DieuKhien.choiVoiNguoi(grp);
+            
 
             grp.Clear(pnlBanCo.BackColor);
             Image image = new Bitmap(Properties.Resources.b);
             pnlBanCo.BackgroundImage = image;
             //xóa tất cả các hình đã vẽ trên panel chỉ giữ lại màu nền panel
+        }
+
+        public void Delayed(int delay, Action action)
+        {
+            Timer timer = new Timer();
+            timer.Interval = delay;
+            timer.Tick += (s, e) => {
+                action();
+                timer.Stop();
+            };
+            timer.Start();
         }
 
         private void pnlBanCo_MouseClick(object sender, MouseEventArgs e)
@@ -94,8 +115,13 @@ namespace CO_CARO_2
 
         private void chơiVớiMáyToolStripMenuItem_Click(object sender = null, EventArgs e = null)
         {
+            pictureChuoi1.Image = global::CO_CARO_2.Properties.Resources.gif1edit;
+            textGayBan.Text = "The battle has begun!!!";
+            panelGayban.Visible = true;
+            Delayed(3000, () => panelGayban.Visible = false);
+
             welcomeChuoi.Visible = false;
-            chuoi1.Visible = true;
+            pictureChuoi1.Visible = true;
             logo.Visible = true;
             DieuKhien.choiVoiMay(grp);
 
@@ -118,7 +144,7 @@ namespace CO_CARO_2
 
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ultimate Caro Battle \nGroup: The Fellowship of Bananas \n","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Bananas Caro Battle \nGroup: The Fellowship of Bananas \n","",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void fileToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -206,6 +232,36 @@ namespace CO_CARO_2
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chuoi1_Click(object sender, EventArgs e)
         {
 
         }
