@@ -106,7 +106,6 @@ namespace CO_CARO_2
                         {
                             BanCo.veQuanCo(g, cot * C_OCo.CHIEU_CAO, dong * C_OCo.CHIEU_RONG, _luotDi);
                             MangOCo[dong, cot].SoHuu = 2;
-
                             //sao chép o cờ ra một vùng nhớ mới để đẩy vào stack
                             C_OCo OCo = new C_OCo(MangOCo[dong, cot].Dong, MangOCo[dong, cot].Cot, MangOCo[dong, cot].SoHuu);
                             //sau khi đánh xong thì đẩy o cờ vào trong stack
@@ -118,6 +117,46 @@ namespace CO_CARO_2
                 }
             }
             catch (IndexOutOfRangeException e) {
+                Console.WriteLine(e);
+            };
+        }
+
+        //Delete move
+        public void deleteMove(Graphics g, int moveX, int moveY, int botX, int botY)
+        {
+            //Console.WriteLine(moveX +" "+ moveY);
+            int dong = moveY / C_OCo.CHIEU_CAO;
+            int cot = moveX / C_OCo.CHIEU_RONG;
+            MangOCo[dong, cot].SoHuu = 0;
+            int dongBot = botY / C_OCo.CHIEU_CAO;
+            int cotBot = botX / C_OCo.CHIEU_RONG;
+            MangOCo[dongBot, cotBot].SoHuu = 0;
+            //Console.WriteLine(botX + " " + botY);
+            //Console.WriteLine(MangOCo[dongBot, cotBot].SoHuu);
+            _stkCacNuocDaDi.Pop();
+            BanCo.veQuanCo(g, cot * C_OCo.CHIEU_CAO + 1, dong * C_OCo.CHIEU_RONG + 1, 0);
+            _stkCacNuocDaDi.Pop();
+            BanCo.veQuanCo(g, cotBot * C_OCo.CHIEU_CAO + 1, dongBot * C_OCo.CHIEU_RONG + 1, 0);
+        }
+
+        //Undo move
+        public void undoMove(Graphics g, int moveX, int moveY, int botX, int botY)
+        {
+            try
+            {
+                if (_luotDi == 0) return;
+                //if (_luotDi == 1)
+                //{
+                //    MessageBox.Show("You cannot undo!");
+                //    return;
+                //}
+                if (_luotDi == 2 || _luotDi == 1)
+                {
+                    deleteMove(g, moveX, moveY, botX, botY);
+                }
+            }
+            catch (IndexOutOfRangeException e)
+            {
                 Console.WriteLine(e);
             };
         }
@@ -226,17 +265,17 @@ namespace CO_CARO_2
                     }
 
                     danhCo(g, oco.Cot * C_OCo.CHIEU_RONG + 1, oco.Dong * C_OCo.CHIEU_CAO + 1);
-
                 }
             }
         }
 
-        public void mayDanh(Graphics g)
+        public KeyValuePair<int, int> mayDanh(Graphics g)
         {
-            int DiemMax = 0;
+            //int DiemMax = 0;
             //int DiemPhongNgu = 0;
             //int DiemTanCong = 0;
             //C_OCo oco = new C_OCo();
+            var pair = new KeyValuePair<int, int>();
 
             if (_luotDi == 1)
             {
@@ -244,6 +283,7 @@ namespace CO_CARO_2
                 if (_stkCacNuocDaDi.Count == 0)
                 {
                     danhCo(g, rd.Next((BanCo.SoCot / 2 - 3) * C_OCo.CHIEU_RONG + 1, (BanCo.SoCot / 2 + 3) * C_OCo.CHIEU_RONG + 1), rd.Next((BanCo.SoDong / 2 - 3) * C_OCo.CHIEU_CAO, (BanCo.SoDong / 2 + 3) * C_OCo.CHIEU_CAO));
+                    pair = new KeyValuePair<int, int>(rd.Next((BanCo.SoCot / 2 - 3) * C_OCo.CHIEU_RONG + 1, (BanCo.SoCot / 2 + 3) * C_OCo.CHIEU_RONG + 1), rd.Next((BanCo.SoDong / 2 - 3) * C_OCo.CHIEU_CAO, (BanCo.SoDong / 2 + 3) * C_OCo.CHIEU_CAO));
                 }
                 else
                 {
@@ -252,9 +292,11 @@ namespace CO_CARO_2
                     int x = MaxValue(MangOCo, 0, 0, 1, -INFINITY, INFINITY);
 
                     danhCo(g, oco.Cot * C_OCo.CHIEU_RONG + 1, oco.Dong * C_OCo.CHIEU_CAO + 1);
+                    pair = new KeyValuePair<int, int>(oco.Cot * C_OCo.CHIEU_RONG + 1, oco.Dong * C_OCo.CHIEU_CAO + 1);
 
                 }
             }
+            return pair;
         }
 
         private int MaxValue(C_OCo[,] b, int m, int n, int depth, int alpha, int beta)

@@ -11,6 +11,7 @@ namespace CO_CARO_2
         //khai báo 2 ảnh để vẽ ảnh lên bàn cờ
         Image ImageO = new Bitmap(Properties.Resources.o);
         Image ImageX = new Bitmap(Properties.Resources.x);
+        Image empty = Image.FromFile("C:/Users/ADMIN/Desktop/Caro AI/CO CARO 2/CO CARO 2/HinhAnh/empty.png");
 
         private int _soDong;
 
@@ -57,8 +58,12 @@ namespace CO_CARO_2
         //vẽ quân cờ
         public void veQuanCo(Graphics g, int X, int Y, int SoHuu)
         {
+            if(SoHuu == 0)
+            {
+                g.DrawImage(empty, X, Y);
+            }
             //quân đen
-            if (SoHuu == 1)
+            else if (SoHuu == 1)
             {
                 g.DrawImage(ImageO, X, Y);
                 //g.FillEllipse(C_DieuKhien.sbBlack, X+2, Y+2, C_OCo.CHIEU_RONG-4, C_OCo.CHIEU_CAO-4);

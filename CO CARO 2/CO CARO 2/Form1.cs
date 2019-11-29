@@ -17,6 +17,10 @@ namespace CO_CARO_2
         private Graphics grp;
         private C_DieuKhien DieuKhien;
         private fmLuatChoi LuatChoi;
+        private int tempX;
+        private int tempY;
+        private int tmpBotX;
+        private int tmpBotY;
 
         public fmCoCaro()
         {
@@ -69,6 +73,8 @@ namespace CO_CARO_2
                 {
                     //đánh cờ với tọa độ chuột khi lick vào panel bàn cờ
                     DieuKhien.danhCo(grp, e.Location.X, e.Location.Y);
+                    tempX = e.Location.X;
+                    tempY = e.Location.Y;
                     //sau khi đánh cờ thì kiểm tra chiến thắng luôn
                     DieuKhien.kiemTraChienThang(grp);
                 }
@@ -77,11 +83,15 @@ namespace CO_CARO_2
                 {
                     //người chơi đánh
                     DieuKhien.danhCo(grp, e.Location.X, e.Location.Y);
+                    tempX = e.Location.X;
+                    tempY = e.Location.Y;
                     //kiểm tra người chơi chưa chiến thắng thì cho máy đánh
                     if (!DieuKhien.kiemTraChienThang(grp))
                     {
                         //máy đánh
-                        DieuKhien.mayDanh(grp);
+                        var pair = DieuKhien.mayDanh(grp);
+                        tmpBotX = pair.Key;
+                        tmpBotY = pair.Value;
                         DieuKhien.kiemTraChienThang(grp);
                     }
                 }
@@ -111,7 +121,7 @@ namespace CO_CARO_2
 
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ultimate Caro Battle \nGroup: The Fellowship of Bananas \n","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Bananas Caro Battle \nGroup: The Fellowship of Bananas \n","",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void fileToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -196,6 +206,11 @@ namespace CO_CARO_2
         private void fmCoCaro_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DieuKhien.undoMove(grp, tempX, tempY, tmpBotX, tmpBotY);
         }
     }
 }
