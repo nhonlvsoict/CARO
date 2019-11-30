@@ -1938,12 +1938,12 @@ namespace CO_CARO_2
             {
                 if (oco.SoHuu == 1)
                 {
-                    //MessageBox.Show("AI wins");
+                    MessageBox.Show("AI wins");
                     gayBan(1);
                 }
                 else
                 {
-                    //MessageBox.Show("Player wins");
+                    MessageBox.Show("Player wins");
                     gayBan(2);
                 }
 
