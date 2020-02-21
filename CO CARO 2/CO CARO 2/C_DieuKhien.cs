@@ -254,28 +254,22 @@ namespace CO_CARO_2
 
         public void mayDanh(Graphics g)
         {
-            int DiemMax = 0;
-            //int DiemPhongNgu = 0;
-            //int DiemTanCong = 0;
-            //C_OCo oco = new C_OCo();
-
             gayBan(0);
-
             if (_luotDi == 1)
             {
                 //lượt đi đầu tiên sẽ đánh random trong khoảng chính giữa đến 3 nước trên bàn cờ
                 if (_stkCacNuocDaDi.Count == 0)
                 {
-                    danhCo(g, rd.Next((BanCo.SoCot / 2 - 3) * C_OCo.CHIEU_RONG + 1, (BanCo.SoCot / 2 + 3) * C_OCo.CHIEU_RONG + 1), rd.Next((BanCo.SoDong / 2 - 3) * C_OCo.CHIEU_CAO, (BanCo.SoDong / 2 + 3) * C_OCo.CHIEU_CAO));
+                    danhCo(g, rd.Next((BanCo.SoCot / 2 - 3) * C_OCo.CHIEU_RONG + 1, 
+                        (BanCo.SoCot / 2 + 3) * C_OCo.CHIEU_RONG + 1), 
+                        rd.Next((BanCo.SoDong / 2 - 3) * C_OCo.CHIEU_CAO, 
+                        (BanCo.SoDong / 2 + 3) * C_OCo.CHIEU_CAO));
                 }
                 else
                 {
                     //thuật toán minmax tìm điểm cao nhất để đánh
-
                     int x = MaxValue(MangOCo, 0, 0, 1, -INFINITY, INFINITY);
-
                     danhCo(g, oco.Cot * C_OCo.CHIEU_RONG + 1, oco.Dong * C_OCo.CHIEU_CAO + 1);
-
                 }
             }
         }
@@ -289,7 +283,7 @@ namespace CO_CARO_2
             {
                 for (int j = 0; j < BanCo.SoCot; j++)
                 {
-                    //nếu nước cờ chưa có ai đánh và không bị cắt tỉa thì mới xét giá trị MinMax
+                    //nếu nước cờ chưa có ai đánh và không bị cắt tỉa thì mới xét giá trị
                     if (b[i, j].SoHuu == 0 && !catTia(b[i, j]))
                     {
                         C_OCo[,] c = (C_OCo[,])b.Clone();
@@ -318,7 +312,7 @@ namespace CO_CARO_2
             {
                 for (int j = 0; j < BanCo.SoCot; j++)
                 {
-                    //nếu nước cờ chưa có ai đánh và không bị cắt tỉa thì mới xét giá trị MinMax
+                    //nếu nước cờ chưa có ai đánh và không bị cắt tỉa thì mới xét giá trị 
                     if (b[i, j].SoHuu == 0 && !catTia(b[i, j]))
                     {
                         C_OCo[,] c = (C_OCo[,])b.Clone();
@@ -485,12 +479,9 @@ namespace CO_CARO_2
 
         private int Analysis(C_OCo[,] MangOCo, int i, int j, int ta, int dich)
         {
-            int DiemTam = 0;
+            int DiemMax = 0;
             int DiemPhongNgu = 0;
             int DiemTanCong = 0;
-            //C_OCo oco = new C_OCo();
-
-            //nếu nước cờ chưa có ai đánh và không bị cắt tỉa thì mới xét giá trị MinMax
             DiemTanCong = analysisTC_Ngang(i, j, ta, dich) 
                 + analysisTC_Doc(i, j, ta, dich) 
                 + analysisTC_CheoXuoi(i, j, ta, dich) 
@@ -499,19 +490,19 @@ namespace CO_CARO_2
                 + analysisPN_Doc(i, j, ta, dich) 
                 + analysisPN_CheoXuoi(i, j, ta, dich) 
                 + analysisPN_CheoNguoc(i, j, ta, dich);
-
             if (DiemPhongNgu > DiemTanCong)
             {
-                DiemTam = DiemPhongNgu;
+                DiemMax = DiemPhongNgu;
             }
             else
             {
-                DiemTam = DiemTanCong;
+                DiemMax = DiemTanCong;
             }
 
-            if (ta == 1) return DiemTam;
-            else return -DiemTam;
+            if (ta == 1) return DiemMax;
+            else return -DiemMax;
         }
+
         #region AI
 
         private int[] MangDiemTanCong = new int[7] { 0, 4, 25, 246, 7300, 6561, 59049 };
@@ -526,6 +517,8 @@ namespace CO_CARO_2
             int SoQuanDichPhai = 0;
             int SoQuanDichTrai = 0;
             int KhoangChong = 0;
+            int SoQuanTaPhai = 0;
+            bool ok = false;
 
             //bên phải
             for (int dem = 1; dem <= 4 && cotHT < BanCo.SoCot - 5; dem++)
@@ -545,9 +538,28 @@ namespace CO_CARO_2
                     SoQuanDichPhai++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            //neu co 4 quan ta ke ben thi uu tien danh thu 2(diem + MangDiemTanCong[6]), uu tien nhat la co 4 quan dich ke ben(diem + MangDiemPhongNgu[6]) (diem PN6 > TC6)
+            if (SoQuanTa ==4 && SoQuanDichPhai == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+            SoQuanTaPhai = SoQuanTa;
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if(SoQuanTa == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
             //bên trái
+            ok = false;
             for (int dem = 1; dem <= 4 && cotHT > 4; dem++)
             {
                 if (MangOCo[dongHT, cotHT - dem].SoHuu == ta)
@@ -565,8 +577,25 @@ namespace CO_CARO_2
                     SoQuanDichTrai++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            //neu co 4 quan ta ke ben thi uu tien danh thu 2(diem + MangDiemTanCong[6]), uu tien nhat la co 4 quan dich ke ben(diem + MangDiemPhongNgu[6]) (diem PN6 > TC6)
+            if (SoQuanTa - SoQuanTaPhai == 4 && SoQuanDichTrai == 0 )
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa - SoQuanTaPhai == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
             //bị chặn 2 đầu khoảng chống không đủ tạo thành 5 nước
             if (SoQuanDichPhai > 0 && SoQuanDichTrai > 0 && KhoangChong < 4)
                 return 0;
@@ -584,7 +613,8 @@ namespace CO_CARO_2
             int SoQuanDichTren = 0;
             int SoQuanDichDuoi = 0;
             int KhoangChong = 0;
-
+            int SoQuanTaTren = 0;
+            bool ok = false;
             //bên trên
             for (int dem = 1; dem <= 4 && dongHT > 4; dem++)
             {
@@ -603,9 +633,27 @@ namespace CO_CARO_2
                     SoQuanDichTren++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            if (SoQuanTa == 4 && SoQuanDichTren == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+            SoQuanTaTren = SoQuanTa;
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
             //bên dưới
+            ok = false;
             for (int dem = 1; dem <= 4 && dongHT < BanCo.SoDong - 5; dem++)
             {
                 if (MangOCo[dongHT + dem, cotHT].SoHuu == ta)
@@ -623,8 +671,24 @@ namespace CO_CARO_2
                     SoQuanDichDuoi++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            if (SoQuanTa - SoQuanTaTren == 4 && SoQuanDichDuoi == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa - SoQuanTaTren == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
             //bị chặn 2 đầu khoảng chống không đủ tạo thành 5 nước
             if (SoQuanDichTren > 0 && SoQuanDichDuoi > 0 && KhoangChong < 4)
                 return 0;
@@ -642,6 +706,8 @@ namespace CO_CARO_2
             int SoQuanDichCheoTren = 0;
             int SoQuanDichCheoDuoi = 0;
             int KhoangChong = 0;
+            int SoQuanTaCheoTren = 0;
+            bool ok = false;
 
             //bên chéo xuôi xuống
             for (int dem = 1; dem <= 4 && cotHT < BanCo.SoCot - 5 && dongHT < BanCo.SoDong - 5; dem++)
@@ -661,9 +727,27 @@ namespace CO_CARO_2
                     SoQuanDichCheoTren++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            if (SoQuanTa == 4 && SoQuanDichCheoTren == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+            SoQuanTaCheoTren = SoQuanTa;
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
             //chéo xuôi lên
+            ok = false;
             for (int dem = 1; dem <= 4 && dongHT > 4 && cotHT > 4; dem++)
             {
                 if (MangOCo[dongHT - dem, cotHT - dem].SoHuu == ta)
@@ -681,7 +765,21 @@ namespace CO_CARO_2
                     SoQuanDichCheoDuoi++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
+            }
+            if (SoQuanTa - SoQuanTaCheoTren == 4 && SoQuanDichCheoDuoi == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa - SoQuanTaCheoTren == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
             }
             //bị chặn 2 đầu khoảng chống không đủ tạo thành 5 nước
             if (SoQuanDichCheoTren > 0 && SoQuanDichCheoDuoi > 0 && KhoangChong < 4)
@@ -700,6 +798,8 @@ namespace CO_CARO_2
             int SoQuanDichCheoTren = 0;
             int SoQuanDichCheoDuoi = 0;
             int KhoangChong = 0;
+            int SoQuanTaCheoTren = 0;
+            bool ok = false;
 
             //chéo ngược lên
             for (int dem = 1; dem <= 4 && cotHT < BanCo.SoCot - 5 && dongHT > 4; dem++)
@@ -719,9 +819,29 @@ namespace CO_CARO_2
                     SoQuanDichCheoTren++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
             }
+            if (SoQuanTa == 4 && SoQuanDichCheoTren == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+            SoQuanTaCheoTren = SoQuanTa;
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
+            }
+
+
+
             //chéo ngược xuống
+            ok = false;
             for (int dem = 1; dem <= 4 && cotHT > 4 && dongHT < BanCo.SoDong - 5; dem++)
             {
                 if (MangOCo[dongHT + dem, cotHT - dem].SoHuu == ta)
@@ -739,7 +859,22 @@ namespace CO_CARO_2
                     SoQuanDichCheoDuoi++;
                     break;
                 }
-                else KhoangChong++;
+                else
+                {
+                    if (dem == 4)
+                        ok = true;
+                    KhoangChong++;
+                }
+            }
+            if (SoQuanTa - SoQuanTaCheoTren == 4 && SoQuanDichCheoDuoi == 0)
+            {
+                DiemTanCong += MangDiemTanCong[6];
+            }
+
+            //neu co 3 quan minh ke ben va con cuoi trong thi uu tien thu 3 (PN6>TC6>PN5>TC5
+            if (SoQuanTa - SoQuanTaCheoTren == 3 && ok)
+            {
+                DiemTanCong += MangDiemPhongNgu[5];
             }
             //bị chặn 2 đầu khoảng chống không đủ tạo thành 5 nước
             if (SoQuanDichCheoTren > 0 && SoQuanDichCheoDuoi > 0 && KhoangChong < 4)
@@ -763,6 +898,7 @@ namespace CO_CARO_2
             int KhoangChongPhai = 0;
             int KhoangChongTrai = 0;
             bool ok = false;
+            int SoQuanDichPhai = 0;
 
             //ben phai
             for (int dem = 1; dem <= 4 && cotHT < BanCo.SoCot - 5; dem++)
@@ -791,13 +927,18 @@ namespace CO_CARO_2
                     KhoangChongPhai++;
                 }
             }
+            if (SoQuanDich == 4 && SoQuanTaPhai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
+            
 
             // nếu có 3 địch và địch đó cách quân vừa đánh 1 con về bên phải
             //(nghia la có 1 khoang trong và khoang trong do ngay sat ben phai: ok = true)
             //thi tru diem phong ngu nhieu
             if (SoQuanDich == 3 && KhoangChongPhai == 1 && ok)
                 DiemPhongNgu -= 200;
-
+            SoQuanDichPhai = SoQuanDich;
 
             //ben trai
             ok = false;
@@ -828,6 +969,11 @@ namespace CO_CARO_2
                     KhoangChongTrai++;
                 }
             }
+            if (SoQuanDich - SoQuanDichPhai ==4 && KhoangChongTrai == 0 && SoQuanTaTrai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
+
             //tuong tu nhu tren 
             if (SoQuanDich == 3 && KhoangChongTrai == 1 && ok)
                 DiemPhongNgu -= 200;
@@ -851,6 +997,7 @@ namespace CO_CARO_2
             int KhoangChongTren = 0;
             int KhoangChongDuoi = 0;
             bool ok = false;
+            int SoQuanDichTren = 0;
 
             //lên
             for (int dem = 1; dem <= 4 && dongHT > 4; dem++)
@@ -880,9 +1027,14 @@ namespace CO_CARO_2
                     KhoangChongTren++;
                 }
             }
+            if (SoQuanDich == 4 && SoQuanTaPhai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
             if (SoQuanDich == 3 && KhoangChongTren == 1 && ok)
                 DiemPhongNgu -= 200;
+            SoQuanDichTren = SoQuanDich;
 
             ok = false;
             //xuống
@@ -913,6 +1065,10 @@ namespace CO_CARO_2
                     KhoangChongDuoi++;
                 }
             }
+            if (SoQuanDich - SoQuanDichTren == 4 && KhoangChongDuoi == 0 && SoQuanTaTrai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
             if (SoQuanDich == 3 && KhoangChongDuoi == 1 && ok)
                 DiemPhongNgu -= 200;
@@ -935,6 +1091,7 @@ namespace CO_CARO_2
             int KhoangChongTren = 0;
             int KhoangChongDuoi = 0;
             bool ok = false;
+            int SoQuanDichPhai = 0;
 
             //lên
             for (int dem = 1; dem <= 4 && dongHT < BanCo.SoDong - 5 && cotHT < BanCo.SoCot - 5; dem++)
@@ -963,9 +1120,14 @@ namespace CO_CARO_2
                     KhoangChongTren++;
                 }
             }
+            if (SoQuanDich == 4 && SoQuanTaPhai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
             if (SoQuanDich == 3 && KhoangChongTren == 1 && ok)
                 DiemPhongNgu -= 200;
+            SoQuanDichPhai = SoQuanDich;
 
             ok = false;
             //xuống
@@ -995,6 +1157,10 @@ namespace CO_CARO_2
                     KhoangChongDuoi++;
                 }
             }
+            if (SoQuanDich - SoQuanDichPhai == 4 && KhoangChongDuoi == 0 && SoQuanTaTrai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
             if (SoQuanDich == 3 && KhoangChongDuoi == 1 && ok)
                 DiemPhongNgu -= 200;
@@ -1018,6 +1184,7 @@ namespace CO_CARO_2
             int KhoangChongTren = 0;
             int KhoangChongDuoi = 0;
             bool ok = false;
+            int SoQuanDichPhai = 0;
 
             //lên
             for (int dem = 1; dem <= 4 && dongHT > 4 && cotHT < BanCo.SoCot - 5; dem++)
@@ -1047,10 +1214,15 @@ namespace CO_CARO_2
                     KhoangChongTren++;
                 }
             }
+            if (SoQuanDich == 4 && SoQuanTaPhai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
 
             if (SoQuanDich == 3 && KhoangChongTren == 1 && ok)
                 DiemPhongNgu -= 200;
+            SoQuanDichPhai = SoQuanDich;
 
             ok = false;
 
@@ -1081,6 +1253,10 @@ namespace CO_CARO_2
                     KhoangChongDuoi++;
                 }
             }
+            if (SoQuanDich - SoQuanDichPhai == 4 && KhoangChongDuoi == 0 && SoQuanTaTrai == 0)
+            {
+                DiemPhongNgu += MangDiemPhongNgu[6];
+            }
 
             if (SoQuanDich == 3 && KhoangChongDuoi == 1 && ok)
                 DiemPhongNgu -= 200;
@@ -1101,7 +1277,7 @@ namespace CO_CARO_2
         #endregion
 
 
-        #region Cắt tỉa Alpha betal
+        #region Cắt tỉa nearby
         bool catTia(C_OCo oCo)
         {
             //nếu cả 4 hướng đều không có nước cờ thì cắt tỉa
@@ -1926,6 +2102,7 @@ namespace CO_CARO_2
         //kết thúc trò chơi
         public void ketThucTroChoi(C_OCo oco)
         {
+            _sanSang = false;
             //chơi với người
             if (_cheDoChoi == 1)
             {
@@ -1938,18 +2115,17 @@ namespace CO_CARO_2
             {
                 if (oco.SoHuu == 1)
                 {
-                    MessageBox.Show("AI wins");
                     gayBan(1);
+                    MessageBox.Show("AI wins");
+
                 }
                 else
                 {
-                    MessageBox.Show("Player wins");
                     gayBan(2);
+                    MessageBox.Show("Player wins");
                 }
 
             }
-
-            _sanSang = false;
         }
 
         public void undo(Graphics g)

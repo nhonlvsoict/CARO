@@ -123,6 +123,8 @@ namespace CO_CARO_2
             welcomeChuoi.Visible = false;
             pictureChuoi1.Visible = true;
             logo.Visible = true;
+
+            DieuKhien.LuotDi = 1;
             DieuKhien.choiVoiMay(grp);
 
             grp.Clear(pnlBanCo.BackColor);
